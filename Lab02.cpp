@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -32,6 +33,18 @@ public:
 			genreobj->isExplicit = true;
 		else
 			genreobj->isExplicit = false;
+	}
+};
+
+struct Author
+{
+private:
+	int birthyear;
+	string name;
+public:
+	string getAuthorData(Author author)
+	{
+		return name + to_string(birthyear);
 	}
 };
 
