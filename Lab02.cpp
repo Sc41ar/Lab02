@@ -17,6 +17,13 @@ enum GenreName
 	childlitreture
 };
 
+enum PublisherName
+{
+	Zarya = 1,
+	Epos,
+	RNT
+};
+
 int main()
 {
 	cout << "Hello World!\n";
@@ -48,3 +55,8 @@ public:
 	}
 };
 
+struct Publisher
+{
+private:
+	PublisherName name;
+};
