@@ -29,7 +29,30 @@ enum PublisherName
 int main()
 {
 	setlocale(LC_ALL, "Rus");
-	cout << "Hello World!\n";
+	int bookCount, magazineCount;
+	cout << "Введите количество книг в библиотеке " << bookCount << endl << "Введите количество журналов в библиотеке" << magazineCount << endl;
+	Book* bookArray = new Book[bookCount];
+	for (int i = 0; i < bookCount; i++)
+	{
+		Book::Input(&bookArray[i]);
+	}
+	Magazine* magazineArray = new Magazine[magazineCount];
+	for (int i = 0; i < magazineCount; i++)
+	{
+		Magazine::Input(&magazineArray[i]);
+	}
+	string requiredBook, requiredMagazine;
+	cout << "Введите название книги и журнала, о которых вывести информацию" << requiredBook << requiredMagazine << endl;
+	for (int i = 0; i < bookCount; i++)
+	{
+		if (bookArray[i].name == requiredBook)
+			Book::Output(bookArray[i]);
+	}
+	for (int i = 0; i < magazineCount; i++)
+	{
+		if (magazineArray[i].name == requiredMagazine)
+			Magazine::Output(magazineArray[i]);
+	}
 }
 
 struct Genre
@@ -138,13 +161,13 @@ public:
 struct Book
 {
 private:
-	string name;
 	Genre genre;
 	Author author;
 	Publisher publisher;
 	int publishingYear;
 
 public:
+	string name;
 	static void Input(Book* b)
 	{
 		string genreStr, publisherStr;
@@ -160,7 +183,7 @@ public:
 		string genreStr, publisherStr;
 		genreStr = Genre::GetGenreInStr(&(b.genre));
 		publisherStr = Publisher::GetPublisherInString(&(b.publisher));
-		cout << "Информация о книге " << b.name << "жанр: " << genreStr << "автор: " 
+		cout << "Информация о книге " << b.name << "жанр: " << genreStr << "автор: "
 			<< b.author.name << "издатель: " << publisherStr << "год издания: " << b.publishingYear << endl;
 	}
 };
@@ -168,12 +191,13 @@ public:
 struct Magazine
 {
 private:
-	string name;
 	Genre genre;
 	Publisher publisher;
 	int publishingYear;
 	int publishingMonth;
 public:
+
+	string name;
 	static void Input(Magazine* m)
 	{
 		string genreStr, publisherStr;
@@ -189,7 +213,7 @@ public:
 		string genreStr, publisherStr;
 		genreStr = Genre::GetGenreInStr(&(m.genre));
 		publisherStr = Publisher::GetPublisherInString(&(m.publisher));
-		cout << "Информация о журнале " << m.name << "жанр: " << genreStr << "издатель: " << publisherStr 
+		cout << "Информация о журнале " << m.name << "жанр: " << genreStr << "издатель: " << publisherStr
 			<< "год издания: " << m.publishingYear << "месяц издания" << m.publishingMonth << endl;
 	}
 };
