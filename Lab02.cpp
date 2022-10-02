@@ -106,6 +106,33 @@ struct Publisher
 {
 public:
 	PublisherName name;
+
+	static PublisherName GetPublisherFormString(string pubDescription)
+	{
+		if (pubDescription == "Заря" || pubDescription == "заря")
+			return Zarya;
+		else if (pubDescription == "эпос" || pubDescription == "Эпос")
+			return Epos;
+		else if (pubDescription == "РНТ" || pubDescription == "рнт")
+			return RNT;
+		else
+			return Zarya;
+	}
+
+	static string GetPublisherInString(Publisher* publisher)
+	{
+		switch (publisher->name)
+		{
+		case Zarya:
+			return "Заря"; break;
+		case Epos:
+			return "Эпос"; break;
+		case RNT:
+			return "РНТ"; break;
+		default:
+			return "Заря"; break;
+		}
+	}
 };
 
 struct Book
@@ -125,12 +152,14 @@ public:
 		cin >> b->name >> genreStr >> b->author.name >> publisherStr >> b->publishingYear;
 		b->genre.genreName = Genre::GetGenreFromString(genreStr);
 		Genre::GetExplicity(&(b->genre));
+		b->publisher.name = Publisher::GetPublisherFormString(publisherStr);
 	}
 
 	static void Output(Book b)
 	{
 		string genreStr, publisherStr;
-		genreStr = Genre.GetGenreInStr(&genre);
-		cout << <<
+		genreStr = Genre::GetGenreInStr(&(b.genre));
+		publisherStr = Publisher::GetPublisherInString(&(b.publisher));
+		cout << "Информация о книге " << b.name << "жанр: " << genreStr << "автор: " << b.author.name << "издатель: " << publisherStr << "год издания: " << b.publishingYear << endl;
 	}
 };
