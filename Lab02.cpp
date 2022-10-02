@@ -160,6 +160,36 @@ public:
 		string genreStr, publisherStr;
 		genreStr = Genre::GetGenreInStr(&(b.genre));
 		publisherStr = Publisher::GetPublisherInString(&(b.publisher));
-		cout << "Информация о книге " << b.name << "жанр: " << genreStr << "автор: " << b.author.name << "издатель: " << publisherStr << "год издания: " << b.publishingYear << endl;
+		cout << "Информация о книге " << b.name << "жанр: " << genreStr << "автор: " 
+			<< b.author.name << "издатель: " << publisherStr << "год издания: " << b.publishingYear << endl;
+	}
+};
+
+struct Magazine
+{
+private:
+	string name;
+	Genre genre;
+	Publisher publisher;
+	int publishingYear;
+	int publishingMonth;
+public:
+	static void Input(Magazine* m)
+	{
+		string genreStr, publisherStr;
+		cout << "Введите данные книги в следующем порядке: название, жанр, издатель, год издания, месяц издания: " << endl;
+		cin >> m->name >> genreStr >> publisherStr >> m->publishingYear >> m->publishingMonth;
+		m->genre.genreName = Genre::GetGenreFromString(genreStr);
+		Genre::GetExplicity(&(m->genre));
+		m->publisher.name = Publisher::GetPublisherFormString(publisherStr);
+	}
+
+	static void Output(Magazine m)
+	{
+		string genreStr, publisherStr;
+		genreStr = Genre::GetGenreInStr(&(m.genre));
+		publisherStr = Publisher::GetPublisherInString(&(m.publisher));
+		cout << "Информация о журнале " << m.name << "жанр: " << genreStr << "издатель: " << publisherStr 
+			<< "год издания: " << m.publishingYear << "месяц издания" << m.publishingMonth << endl;
 	}
 };
