@@ -165,6 +165,7 @@ namespace St
 		int publishingYear;
 		int publishingMonth;
 	public:
+		string name;
 
 		Magazine()
 		{
@@ -184,7 +185,7 @@ namespace St
 			publishingMonth = month;
 		}
 
-		string name;
+
 		static void Input(Magazine* m)
 		{
 			setlocale(LC_ALL, "Rus");
@@ -240,6 +241,9 @@ int main()
 		if (magazineArray[i].name == requiredMagazine)
 			St::Magazine::Output(magazineArray[i]);
 	}
+
+	delete[] bookArray;
+	delete[] magazineArray;
 }
 
 
