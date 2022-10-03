@@ -10,20 +10,7 @@
 using namespace std;
 
 namespace St
-{ 
-
-	
-
-	enum GenreName
-	{
-		detective = 1,
-		comedy,
-		thriller,
-		horror,
-		epic,
-		poem,
-		childlitreture
-	};
+{
 
 	enum PublisherName
 	{
@@ -34,73 +21,51 @@ namespace St
 
 
 
-	struct Genre
+	class Genre
 	{
 	public:
-		GenreName genreName;
-		bool isExplicit;
-		static void GetExplicity(Genre* genreObj)
-		{
-			if (genreObj->genreName == 1 || genreObj->genreName == 3 || genreObj->genreName == 4)
-				genreObj->isExplicit = true;
-			else
-				genreObj->isExplicit = false;
-		}
-		static string GetGenreInStr(Genre* genreObj)
-		{
-			switch (genreObj->genreName)
-			{
-			case 0:
-				return "Детектив"; break;
-			case 1:
-				return "Комедия"; break;
-			case 2:
-				return "Триллер"; break;
-			case 3:
-				return "Ужасы"; break;
-			case 4:
-				return "Эпос"; break;
-			case 5:
-				return "Стих"; break;
-			case 6:
-				return "Детская литература"; break;
-			default:
-				return ""; break;
-			}
-		}
+		string genreName;
 
-		static GenreName GetGenreFromString(string genreDiscription)
+		Genre()
 		{
-			if (genreDiscription == "детектив" || genreDiscription == "Детектив")
-				return detective;
-			else if (genreDiscription == "комедия" || genreDiscription == "Комедия")
-				return comedy;
-			else if (genreDiscription == "триллер" || genreDiscription == "Триллер")
-				return thriller;
-			else if (genreDiscription == "ужасы" || genreDiscription == "Ужасы")
-				return horror;
-			else if (genreDiscription == "эпос" || genreDiscription == "Эпос")
-				return epic;
-			else if (genreDiscription == "стих" || genreDiscription == "Стих")
-				return poem;
-			else if (genreDiscription == "детская" || genreDiscription == "Детская")
-				return childlitreture;
-			else
-				return detective;
+			genreName = "Детектив";
+		}
+		Genre(string curname)
+		{
+			genreName = curname;
 		}
 	};
 
-	struct Author
+	class Author
 	{
 	public:
 
 		string name;
+
+		Author()
+		{
+			name = "Lenin";
+		}
+		Author(string inputName)
+		{
+			name = inputName;
+		}
 	};
 
-	struct Publisher
+	class Publisher
 	{
 	public:
 		PublisherName name;
+
+		Publisher()
+		{
+			name = Zarya;
+		}
+
+		Publisher(string inputName)
+		{
+			name = GetPublisherFormString(inputName);
+		}
 
 		static PublisherName GetPublisherFormString(string pubDescription)
 		{
@@ -130,7 +95,7 @@ namespace St
 		}
 	};
 
-	struct Book
+	class Book
 	{
 	private:
 		Genre genre;
@@ -140,6 +105,35 @@ namespace St
 
 	public:
 		string name;
+
+		Book()
+		{
+			genre.genreName = "Детектив";
+			author.name = "Рубик";
+			publisher.name = Zarya;
+			publishingYear = 0;
+		}
+
+		Book(string genreName)
+		{
+			genre.genreName = genreName;
+		}
+
+		Book(string genreName, string authorName, string publisherName, int year)
+		{
+			genre.genreName = genreName;
+			author.name = authorName;
+			publisher.name = Publisher::GetPublisherFormString(publisherName);
+			publishingYear = year;
+		}
+
+		Book(string authorName, PublisherName name, int year) : Book(genre.genreName = "Детектив")
+		{
+			author.name = authorName;
+			publisher.name = name;
+			publishingYear = year;
+		}
+
 		static void Input(Book* b)
 		{
 			SetConsoleCP(1251);
@@ -148,9 +142,7 @@ namespace St
 			string genreStr, publisherStr;
 			cout << "Введите данные книги в следующем порядке: название, жанр, автор, издатель, год издания: (разделяйте информацию знаками пробел)" << endl;
 
-			cin >> b->name >> genreStr >> b->author.name >> publisherStr >> b->publishingYear;
-			b->genre.genreName = Genre::GetGenreFromString(genreStr);
-			Genre::GetExplicity(&(b->genre));
+			cin >> b->name >> b->genre.genreName >> b->author.name >> publisherStr >> b->publishingYear;
 			b->publisher.name = Publisher::GetPublisherFormString(publisherStr);
 		}
 
@@ -158,15 +150,14 @@ namespace St
 		{
 			setlocale(LC_ALL, "Rus");
 
-			string genreStr, publisherStr;
-			genreStr = Genre::GetGenreInStr(&(b->genre));
+			string publisherStr;
 			publisherStr = Publisher::GetPublisherInString(&(b->publisher));
-			cout << "Информация о книге " << b->name << " жанр: " << genreStr << " автор: "
+			cout << "Информация о книге " << b->name << " жанр: " << b->genre.genreName << " автор: "
 				<< b->author.name << " издатель: " << publisherStr << " год издания: " << b->publishingYear << endl;
 		}
 	};
 
-	struct Magazine
+	class Magazine
 	{
 	private:
 		Genre genre;
@@ -175,6 +166,24 @@ namespace St
 		int publishingMonth;
 	public:
 
+		Magazine()
+		{
+			name = "А";
+			genre.genreName = "Научный";
+			publisher.name = Zarya;
+			publishingYear = 0;
+			publishingMonth = 0;
+		}
+
+		Magazine(string name, string genName, string publish, int year, int month)
+		{
+			name = name;
+			genre.genreName = genName;
+			publisher.name = Publisher::GetPublisherFormString(publish);
+			publishingYear = year;
+			publishingMonth = month;
+		}
+
 		string name;
 		static void Input(Magazine* m)
 		{
@@ -182,11 +191,9 @@ namespace St
 			SetConsoleCP(1251);
 			SetConsoleOutputCP(1251);
 
-			string genreStr, publisherStr;
+			string publisherStr;
 			cout << "Введите данные журнала в следующем порядке: название, жанр, издатель, год издания, месяц издания: (разделяйте информацию знаками пробел" << endl;
-			cin >> m->name >> genreStr >> publisherStr >> m->publishingYear >> m->publishingMonth;
-			m->genre.genreName = Genre::GetGenreFromString(genreStr);
-			Genre::GetExplicity(&(m->genre));
+			cin >> m->name >> m->genre.genreName >> publisherStr >> m->publishingYear >> m->publishingMonth;
 			m->publisher.name = Publisher::GetPublisherFormString(publisherStr);
 		}
 
@@ -194,11 +201,10 @@ namespace St
 		{
 			setlocale(LC_ALL, "Rus");
 
-			string genreStr, publisherStr;
-			genreStr = Genre::GetGenreInStr(&(m.genre));
+			string publisherStr;
 			publisherStr = Publisher::GetPublisherInString(&(m.publisher));
-			cout << "Информация о журнале " << m.name << " жанр: " << genreStr << " издатель: " << publisherStr
-				<< " год издания: " << m.publishingYear << " месяц издания" << m.publishingMonth << endl;
+			cout << "Информация о журнале " << m.name << " жанр: " << m.genre.genreName << " издатель: " << publisherStr
+				<< " год издания: " << m.publishingYear << " месяц издания: " << m.publishingMonth << endl;
 		}
 	};
 }
