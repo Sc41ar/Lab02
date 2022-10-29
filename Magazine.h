@@ -8,6 +8,8 @@
 #include <Windows.h>
 #include <clocale>
 
+using namespace std;
+
 namespace St
 {
 	class Magazine
@@ -19,6 +21,7 @@ namespace St
 		int publishingMonth;
 	public:
 		std::string name;
+		static const int maxPages = 40;
 
 		Magazine()
 		{
@@ -44,9 +47,25 @@ namespace St
 			setlocale(LC_ALL, "Rus");
 			SetConsoleCP(1251);
 			SetConsoleOutputCP(1251);
-			std::cout << "¬ведите данные журнала в следующем пор€дке: название, жанр, издатель, год издани€, мес€ц издани€: (раздел€йте информацию знаками пробел" << std::endl;
-			std::cin >> m->name >> m->genre.genreName >> m->publisher.publisherName >> m->publishingYear >> m->publishingMonth;
+			string year;
+			string month;
+			string a;
+			std::cout << "¬ведите данные журнала в следующем пор€дке: " << endl;
+			cout << "Ќазвание: ";
+			getline(cin, m->name);
+			cout << "∆анр: ";
+			getline(cin, m->genre.genreName);
+			cout << "»здатель: ";
+			getline(cin, m->publisher.publisherName);
+			cout << "√од издани€: ";
+			getline(cin, year);
+			cout << "ћес€ц изани€: ";
+			getline(cin, month);
+			m->publishingYear = stoi(year);
+			m->publishingMonth = stoi(month);
 		}
+
+
 
 		static void Output(Magazine m)
 		{

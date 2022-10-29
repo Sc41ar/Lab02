@@ -19,9 +19,11 @@ int main()
 	cin >> bookCount;
 	cout << endl << "Введите количество журналов в библиотеке ";
 	cin >> magazineCount;
+	cin.ignore(1, '\n');
 	St::Book* bookArray = new St::Book[bookCount];
 	for (int i = 0; i < bookCount; i++)
 	{
+		
 		St::Book::Input(&(bookArray[i]));
 	}
 	St::Magazine* magazineArray = new St::Magazine[magazineCount];
@@ -30,17 +32,14 @@ int main()
 		St::Magazine::Input(&magazineArray[i]);
 	}
 	string requiredBook, requiredMagazine;
-	cout << "Введите название книги и журнала, о которых вывести информацию" << endl;
-	cin >> requiredBook >> requiredMagazine;
+	
 	for (int i = 0; i < bookCount; i++)
 	{
-		if (bookArray[i].name == requiredBook)
-			St::Book::Output(&(bookArray[i]));
+		St::Book::Output(&(bookArray[i]));
 	}
 	for (int i = 0; i < magazineCount; i++)
 	{
-		if (magazineArray[i].name == requiredMagazine)
-			St::Magazine::Output(magazineArray[i]);
+		St::Magazine::Output(magazineArray[i]);
 	}
 
 	delete[] bookArray;
