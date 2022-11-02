@@ -7,8 +7,6 @@
 #include "Genre.h"
 #include "Publisher.h"
 
-using namespace std;
-
 namespace St
 {
 	class Book
@@ -54,19 +52,8 @@ namespace St
 		{
 			SetConsoleCP(1251);
 			SetConsoleOutputCP(1251);
-			string year;
 			std::cout << "Введите данные книги в следующем порядке: название, жанр, автор, издатель, год издания: (разделяйте информацию знаками пробел)" << std::endl;
-			cout << "Название ";
-			getline(cin, b->name);
-			cout << "Жанр ";
-			getline(cin, b->genre.genreName);
-			cout << "Автор ";
-			getline(cin, b->author.name);
-			cout << "Издатель: ";
-			getline(cin, b->publisher.publisherName);
-			cout << "Год издания: ";
-			getline(cin, year);
-			b->publishingYear = stoi(year);
+			std::cin >> b->name >> b->genre.genreName >> b->author.name >> b->publisher.publisherName >> b->publishingYear;
 		}
 
 		static void Output(Book* b)
