@@ -13,46 +13,56 @@ namespace St
 	class Magazine
 	{
 	private:
+
+		std::string name;
 		Genre genre;
 		Publisher publisher;
 		int publishingYear;
 		int publishingMonth;
+		static int createdCount;
 	public:
-		std::string name;
 
-		Magazine()
-		{
-			name = "ј";
-			genre.genreName = "Ќаучный";
-			publisher.publisherName = "Zarya";
-			publishingYear = 0;
-			publishingMonth = 0;
-		}
+		Magazine();
 
-		Magazine(std::string name, std::string genName, std::string publish, int year, int month)
-		{
-			name = name;
-			genre.genreName = genName;
-			publisher.publisherName = publish;
-			publishingYear = year;
-			publishingMonth = month;
-		}
+		Magazine(std::string name, std::string genName, std::string publish, int year, int month);
 
 
-		static void Input(Magazine* m)
-		{
-			setlocale(LC_ALL, "Rus");
-			SetConsoleCP(1251);
-			SetConsoleOutputCP(1251);
-			std::cout << "¬ведите данные журнала в следующем пор€дке: название, жанр, издатель, год издани€, мес€ц издани€: (раздел€йте информацию знаками пробел" << std::endl;
-			std::cin >> m->name >> m->genre.genreName >> m->publisher.publisherName >> m->publishingYear >> m->publishingMonth;
-		}
+		static void Input(Magazine* m);
 
-		static void Output(Magazine m)
-		{
-			setlocale(LC_ALL, "Rus");
-			std::cout << "»нформаци€ о журнале " << m.name << " жанр: " << m.genre.genreName << " издатель: " << m.publisher.publisherName
-				<< " год издани€: " << m.publishingYear << " мес€ц издани€: " << m.publishingMonth << std::endl;
-		}
+		static void Output(Magazine m);
+
+		void SetName(string name);
+
+		string GetName();
+
+		void SetGenre(string genre);
+
+		string GetGenre();
+
+		void SetPublisher(string publisher);
+
+		string GetPublisher();
+
+		void SetYear(string year);
+
+		void SetYear(int year);
+
+		int GetYear();
+
+		void SetMonth(string month);
+
+		void SetMonth(int month);
+
+		int GetMonth();
+
+		void SetCreatedCount(string count);
+
+		void SetCreatedCount(int count);
+
+		int GetCreatedCount();
+
 	};
+
+
+	int Magazine::createdCount = 0;
 }

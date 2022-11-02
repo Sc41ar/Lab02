@@ -10,13 +10,7 @@ namespace St
 
 		std::string name;
 
-		Author()
-		{
-			name = "Lenin";
-		}
-		Author(std::string inputName)
-		{
-			name = inputName;
-		}
+		Author();
+		Author(std::string inputName);
 	};
 }

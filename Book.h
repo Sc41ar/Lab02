@@ -16,51 +16,36 @@ namespace St
 		Author author;
 		Publisher publisher;
 		int publishingYear;
-
-	public:
 		std::string name;
+	public:
+		
 
-		Book()
-		{
-			genre.genreName = "ƒетектив";
-			author.name = "–убик";
-			publisher.publisherName = "Zarya";
-			publishingYear = 0;
-		}
+		Book();
 
-		Book(std::string genreName)
-		{
-			genre.genreName = genreName;
-		}
+		Book(std::string name);
 
-		Book(std::string genreName, std::string authorName, std::string publisherName, int year)
-		{
-			genre.genreName = genreName;
-			author.name = authorName;
-			publisher.publisherName = publisherName;
-			publishingYear = year;
-		}
+		Book(std::string authorName, std::string genreName, int year);
 
-		Book(std::string authorName, std::string name, int year) : Book(genre.genreName = "ƒетектив")
-		{
-			author.name = authorName;
-			publisher.publisherName = name;
-			publishingYear = year;
-		}
+		void SetName(string name);
 
-		static void Input(Book* b)
-		{
-			SetConsoleCP(1251);
-			SetConsoleOutputCP(1251);
-			std::cout << "¬ведите данные книги в следующем пор€дке: название, жанр, автор, издатель, год издани€: (раздел€йте информацию знаками пробел)" << std::endl;
-			std::cin >> b->name >> b->genre.genreName >> b->author.name >> b->publisher.publisherName >> b->publishingYear;
-		}
+		string GetName();
 
-		static void Output(Book* b)
-		{
-			setlocale(LC_ALL, "Rus");
-			std::cout << "»нформаци€ о книге \"" << b->name << "\" жанр: " << b->genre.genreName << " автор: "
-				<< b->author.name << " издатель: " << b->publisher.publisherName << " год издани€: " << b->publishingYear << std::endl;
-		}
+		void SetGenre(string genre);
+
+		string GetGenre();
+
+		void SetAuthor(string author);
+
+		string GetAuthor();
+
+		void SetYear(string year);
+
+		void SetYear(int year);
+
+		int GetYear();
+
+		static void Input(Book* b);
+
+		static void Output(Book* b);
 	};
 }

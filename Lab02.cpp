@@ -1,5 +1,4 @@
-﻿// Lab02.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿
 #include <stdio.h>
 #include <iostream>
 #include <string>
@@ -25,6 +24,7 @@ int main()
 		St::Book::Input(&(bookArray[i]));
 	}
 	St::Magazine* magazineArray = new St::Magazine[magazineCount];
+	St::Magazine::SetCreatedCount(magazineCount);
 	for (int i = 0; i < magazineCount; i++)
 	{
 		St::Magazine::Input(&magazineArray[i]);
@@ -42,6 +42,9 @@ int main()
 		if (magazineArray[i].name == requiredMagazine)
 			St::Magazine::Output(magazineArray[i]);
 	}
+
+	cout << "Количество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount();
+
 
 	delete[] bookArray;
 	delete[] magazineArray;

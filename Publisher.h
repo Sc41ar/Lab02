@@ -9,14 +9,8 @@ namespace St
 	public:
 		std::string publisherName;
 
-		Publisher()
-		{
-			publisherName = "Zarya";
-		}
+		Publisher();
 
-		Publisher(std::string name)
-		{
-			publisherName = name;
-		}
+		Publisher(std::string name);
 	};
 }

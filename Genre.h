@@ -10,13 +10,7 @@ namespace St
 	public:
 		std::string genreName;
 
-		Genre()
-		{
-			genreName = "Детектив";
-		}
-		Genre(std::string curname)
-		{
-			genreName = curname;
-		};
+		Genre();
+		Genre(std::string curname);
 	};
 }
