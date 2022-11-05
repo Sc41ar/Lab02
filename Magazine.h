@@ -6,6 +6,8 @@
 #include "Publisher.h"
 #include <iostream>
 #include <Windows.h>
+
+#include <functional>
 #include <clocale>
 
 using namespace std;

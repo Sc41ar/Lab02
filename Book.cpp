@@ -92,7 +92,7 @@ void St::Book::Input(Book* b)
 	getline(cin, b->publisher.publisherName);
 	cout << "Год издания: ";
 	getline(cin, year);
-	b->publishingYear = stoi(year);
+	b->publishingYear = stoi(year) % 2023;
 }
 
 void St::Book::Output(Book* b)

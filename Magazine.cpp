@@ -23,7 +23,7 @@ void St::Magazine::Input(Magazine* m)
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	string year, month, name, genre, publisher;
+	string year, month;
 	std::cout << "Введите данные журнала в следующем порядке: " << endl;
 	cout << "Название: ";
 	getline(cin, m->name);
@@ -35,19 +35,24 @@ void St::Magazine::Input(Magazine* m)
 	getline(cin, year);
 	cout << "Месяц изания: ";
 	getline(cin, month);
-	m->publishingYear = stoi(year);
-	m->publishingMonth = stoi(month);
-	//m.SetName(name);
-	//m.SetGenre(genre);
-	//m.SetPublisher(publisher);
-	//m.SetYear(year);
-	//m.SetMonth(month);
+	function<bool(string)> is_number = [](string sy) {
+		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //страшное лямбда выражение
+	};
+	while (!is_number(year) || !is_number(month))
+	{
+		cout << "Введите год издания числом) ";
+		getline(cin, year);
+		cout << "А теперь месяц тоже числом) ";
+		getline(cin, month);
+	}
+	m->publishingYear = stoi(year) % 2023;
+	m->publishingMonth = stoi(month) % 13;
 }
 
 void St::Magazine::Output(Magazine m)
 {
 	setlocale(LC_ALL, "Rus");
-	std::cout << "Информация о журнале " << m.name << " жанр: " << m.genre.genreName << " издатель: " << m.publisher.publisherName
+	std::cout << "Информация о журнале \"" << m.name << "\" жанр: " << m.genre.genreName << " издатель: " << m.publisher.publisherName
 		<< " год издания: " << m.publishingYear << " месяц издания: " << m.publishingMonth << std::endl;
 }
 
