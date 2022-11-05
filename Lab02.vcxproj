@@ -139,6 +139,7 @@
     <ClInclude Include="Author.h" />
     <ClInclude Include="Book.h" />
     <ClInclude Include="Genre.h" />
+    <ClInclude Include="Lab02.h" />
     <ClInclude Include="Magazine.h" />
     <ClInclude Include="Publisher.h" />
   </ItemGroup>

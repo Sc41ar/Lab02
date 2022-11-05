@@ -51,6 +51,16 @@ string St::Book::GetAuthor()
 	return author.name;
 }
 
+void St::Book::SetPublisher(string publisher)
+{
+	this->publisher.publisherName = publisher;
+}
+
+string St::Book::GerPublisher()
+{
+	return publisher.publisherName;
+}
+
 void St::Book::SetYear(string year)
 {
 	this->publishingYear = stoi(year);
@@ -70,7 +80,7 @@ void St::Book::Input(Book* b)
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	string year;
+	string  year;
 	std::cout << "Введите данные книги в следующем порядке: название, жанр, автор, издатель, год издания: (разделяйте информацию знаками пробел)" << std::endl;
 	cout << "Название ";
 	getline(cin, b->name);

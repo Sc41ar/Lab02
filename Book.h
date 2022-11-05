@@ -7,6 +7,8 @@
 #include "Genre.h"
 #include "Publisher.h"
 
+using namespace std;
+
 namespace St
 {
 	class Book
@@ -43,6 +45,10 @@ namespace St
 		void SetYear(int year);
 
 		int GetYear();
+
+		void SetPublisher(string publisher);
+
+		string GerPublisher();
 
 		static void Input(Book* b);
 

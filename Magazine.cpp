@@ -23,9 +23,7 @@ void St::Magazine::Input(Magazine* m)
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	string year;
-	string month;
-	string a;
+	string year, month, name, genre, publisher;
 	std::cout << "Введите данные журнала в следующем порядке: " << endl;
 	cout << "Название: ";
 	getline(cin, m->name);
@@ -39,6 +37,11 @@ void St::Magazine::Input(Magazine* m)
 	getline(cin, month);
 	m->publishingYear = stoi(year);
 	m->publishingMonth = stoi(month);
+	//m.SetName(name);
+	//m.SetGenre(genre);
+	//m.SetPublisher(publisher);
+	//m.SetYear(year);
+	//m.SetMonth(month);
 }
 
 void St::Magazine::Output(Magazine m)
@@ -113,5 +116,20 @@ int St::Magazine::GetMonth()
 void St::Magazine::SetCreatedCount(string count)
 {
 	int c = stoi(count);
-	createdCount = //модуль
+	Magazine::createdCount = c;//модуль
 }
+
+void St::Magazine::SetCreatedCount(int count)
+{
+	Magazine::createdCount = count;
+}
+
+int St::Magazine::GetCreatedCount()
+{
+	return createdCount;
+}
+
+
+
+
+int St::Magazine::createdCount = 0;

@@ -8,6 +8,8 @@
 #include <Windows.h>
 #include <clocale>
 
+using namespace std;
+
 namespace St
 {
 	class Magazine
@@ -30,6 +32,12 @@ namespace St
 		static void Input(Magazine* m);
 
 		static void Output(Magazine m);
+
+		static void SetCreatedCount(string count);
+
+		static void SetCreatedCount(int count);
+
+		static int GetCreatedCount();
 
 		void SetName(string name);
 
@@ -55,14 +63,6 @@ namespace St
 
 		int GetMonth();
 
-		void SetCreatedCount(string count);
-
-		void SetCreatedCount(int count);
-
-		int GetCreatedCount();
 
 	};
-
-
-	int Magazine::createdCount = 0;
 }
