@@ -92,6 +92,14 @@ void St::Book::Input(Book* b)
 	getline(cin, b->publisher.publisherName);
 	cout << "Год издания: ";
 	getline(cin, year);
+	function<bool(string)> is_number = [](string sy) {
+		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //страшное лямбда выражение
+	};
+	while (!is_number(year))
+	{
+		cout << "Введите год издания числом) ";
+		getline(cin, year);
+	}
 	b->publishingYear = stoi(year) % 2023;
 }
 

@@ -3,6 +3,7 @@
 #include <string>
 #include <Windows.h>
 #include <iostream>
+#include <functional>
 #include "Author.h"
 #include "Genre.h"
 #include "Publisher.h"
