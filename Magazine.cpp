@@ -144,7 +144,18 @@ int St::Magazine::GetCreatedCount()
 	return createdCount;
 }
 
-
-
-
 int St::Magazine::createdCount = 0;
+
+St::Magazine operator + (St::Magazine m1, St::Magazine m2)
+{
+	int curYear, curMonth;
+	string name;
+	auto determinant = [](int i1, int i2) {
+		return i1 > i2 ? i1 : i2;
+	};
+	name = m1.GetName() + "и" + m2.GetName();
+	curYear = determinant(m1.GetYear(), m2.GetYear());
+	curMonth = determinant(m1.GetMonth(), m2.GetMonth());
+	St::Magazine value(name, "—борник", m2.GetPublisher(), curYear, curMonth);
+	return value;
+}
