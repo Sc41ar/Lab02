@@ -30,6 +30,7 @@ namespace St
 
 		Magazine(std::string name, std::string genName, std::string publish, int year, int month);
 
+		static string* GetOutputStr(Magazine* m, string* output);
 
 		static void Input(Magazine* m);
 

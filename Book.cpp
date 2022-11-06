@@ -103,9 +103,10 @@ void St::Book::Input(Book* b)
 	b->publishingYear = stoi(year) % 2023;
 }
 
-void St::Book::Output(Book* b)
-{
-	setlocale(LC_ALL, "Rus");
-	std::cout << "Информация о книге \"" << b->name << "\" жанр: " << b->genre.genreName << " автор: "
-		<< b->author.name << " издатель: " << b->publisher.publisherName << " год издания: " << b->publishingYear << std::endl;
-}
+//void St::Book::Output(Book* b)
+//{
+//	setlocale(LC_ALL, "Rus");
+//	std::cout << "Информация о книге \"" << b->name << "\" жанр: " << b->genre.genreName << " автор: "
+//		<< b->author.name << " издатель: " << b->publisher.publisherName << " год издания: " << b->publishingYear << std::endl;
+//}
+

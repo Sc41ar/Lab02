@@ -49,11 +49,21 @@ void St::Magazine::Input(Magazine* m)
 	m->publishingMonth = stoi(month) % 13;
 }
 
+string* St::Magazine::GetOutputStr(Magazine* m, string* output)
+{
+	string year = to_string(m->publishingYear);
+	string month = to_string(m->publishingMonth);
+	*output = "»нформаци€ о журнале \"" + m->name + "\" \nжанр: " + m->genre.genreName + "\nиздатель: " + m->publisher.publisherName
+		+ "\nгод издани€: " + year + "\nмес€ц издани€: " + month;
+	return output;
+}
+
 void St::Magazine::Output(Magazine m)
 {
 	setlocale(LC_ALL, "Rus");
-	std::cout << "»нформаци€ о журнале \"" << m.name << "\" жанр: " << m.genre.genreName << " издатель: " << m.publisher.publisherName
-		<< " год издани€: " << m.publishingYear << " мес€ц издани€: " << m.publishingMonth << std::endl;
+	string out;
+
+	std::cout << *(Magazine::GetOutputStr(&m, &out)) << std::endl;
 }
 
 void St::Magazine::SetName(string name)

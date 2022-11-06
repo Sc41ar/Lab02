@@ -34,18 +34,19 @@ int main()
 	}
 	for (int i = 0; i < bookCount; i++)
 	{
-		St::Book::Output(&(bookArray[i]));
+		St::Output(bookArray[i]);
 	}
 	for (int i = 0; i < magazineCount; i++)
 	{
 		St::Magazine::Output(magazineArray[i]);
 	}
 
-	cout << "Количество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount();
+	cout << "Количество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;
 
 
 	delete[] bookArray;
 	delete[] magazineArray;
+	return 0;
 }
 
 

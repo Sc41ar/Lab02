@@ -14,6 +14,7 @@ namespace St
 {
 	class Book
 	{
+		friend static void Output(Book& b);
 	private:
 		Genre genre;
 		Author author;
@@ -53,6 +54,13 @@ namespace St
 
 		static void Input(Book* b);
 
-		static void Output(Book* b);
+		/*static void Output(Book* b);*/
 	};
+
+	void St::Output(Book& b)
+	{
+		setlocale(LC_ALL, "Rus");
+		std::cout << "Информация о книге \"" << b.name << "\" жанр: " << b.genre.genreName << " автор: "
+			<< b.author.name << " издатель: " << b.publisher.publisherName << " год издания: " << b.publishingYear << std::endl;
+	}
 }
