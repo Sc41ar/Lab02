@@ -159,3 +159,10 @@ St::Magazine operator + (St::Magazine m1, St::Magazine m2)
 	St::Magazine value(name, "—борник", m2.GetPublisher(), curYear, curMonth);
 	return value;
 }
+
+St::Magazine operator ++(St::Magazine m1)
+{
+	int month = (m1.GetMonth() + 1) % 13;
+	int year = (m1.GetMonth() + 1) < 13 ? m1.GetYear() : m1.GetYear() + 1;
+	return St::Magazine(m1.GetName(), m1.GetGenre(), m1.GetPublisher(), year, month);
+}
