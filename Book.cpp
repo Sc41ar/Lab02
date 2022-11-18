@@ -92,8 +92,9 @@ void St::Book::Input(Book* b)
 	getline(cin, b->publisher.publisherName);
 	cout << "Год издания: ";
 	getline(cin, year);
-	function<bool(string)> is_number = [](string sy) {
-		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //страшное лямбда выражение
+	function<bool(string)> is_number = [](string sy)														
+	{
+		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //Возвращает проверку на то, является ли строка числом и не пустая ли она.
 	};
 	while (!is_number(year))
 	{

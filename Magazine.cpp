@@ -35,18 +35,27 @@ void St::Magazine::Input(Magazine* m)
 	getline(cin, year);
 	cout << "Месяц изания: ";
 	getline(cin, month);
-	function<bool(string)> is_number = [](string sy) {
-		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //страшное лямбда выражение
-	};
-	while (!is_number(year) || !is_number(month))
+	function<bool(string)> is_number = [](string sy)
 	{
-		cout << "Введите год издания числом) ";
-		getline(cin, year);
-		cout << "А теперь месяц тоже числом) ";
-		getline(cin, month);
+		if (find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) != sy.end())
+			throw std::exception("Неверный ввод года или месяца издания\n");
+		return !sy.empty(); //страшное лямбда выражение
+	};
+	try
+	{
+		m->publishingYear = stoi(year) % 2023;
+		m->publishingMonth = stoi(month) % 13;
 	}
-	m->publishingYear = stoi(year) % 2023;
-	m->publishingMonth = stoi(month) % 13;
+	catch (std::exception& e)
+	{
+		cout << e.what();
+		cout << "\nВведите год издания числом) ";
+		getline(cin, year);
+		cout << "\nА теперь месяц тоже числом) ";
+		getline(cin, month);
+		m->publishingYear = stoi(year) % 2023;
+		m->publishingMonth = stoi(month) % 13;
+	}
 }
 
 string* St::Magazine::GetOutputStr(Magazine* m, string* output)
@@ -136,6 +145,10 @@ void St::Magazine::SetCreatedCount(string count)
 
 void St::Magazine::SetCreatedCount(int count)
 {
+	/*if (count < 1)
+	{
+		throw std::exception("Неправирльный аргумент для количества журналов");
+	}*/
 	Magazine::createdCount = count;
 }
 

@@ -15,10 +15,23 @@ int main()
 {
 	setlocale(LC_ALL, "Rus");
 	int bookCount = 0, magazineCount = 0;
-	cout << "Введите количество книг в библиотеке ";
-	cin >> bookCount;
-	cout << endl << "Введите количество журналов в библиотеке ";
-	cin >> magazineCount;
+	try
+	{
+		cout << "\nВведите количество книг в библиотеке ";
+		cin >> bookCount;
+		cout << endl << "Введите количество журналов в библиотеке ";
+		cin >> magazineCount;
+		if (magazineCount < 0 || bookCount < 0)
+			throw std::exception("\nНеправильный ввод колитчества журналов или книг\n");
+	}
+	catch (std::exception e)
+	{
+		cout << e.what();
+		cout << "\nВведите количество книг в библиотеке ";
+		cin >> bookCount;
+		cout << endl << "Введите количество журналов в библиотеке ";
+		cin >> magazineCount;
+	}
 	St::Book* bookArray = new St::Book[bookCount];
 	cin.ignore();
 	for (int i = 0; i < bookCount; i++)
