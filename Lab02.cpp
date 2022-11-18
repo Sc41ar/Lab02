@@ -17,10 +17,10 @@ int main()
 	int bookCount = 0, magazineCount = 0;
 	try
 	{
-		cout << "\nВведите количество книг в библиотеке ";
-		cin >> bookCount;
+		cout << "\nВведите количество сборников в библиотеке ";
+		std::cin >> bookCount;
 		cout << endl << "Введите количество журналов в библиотеке ";
-		cin >> magazineCount;
+		std::cin >> magazineCount;
 		if (magazineCount < 0 || bookCount < 0)
 			throw std::exception("\nНеправильный ввод колитчества журналов или книг\n");
 	}
@@ -28,17 +28,41 @@ int main()
 	{
 		cout << e.what();
 		cout << "\nВведите количество книг в библиотеке ";
-		cin >> bookCount;
+		std::cin >> bookCount;
 		cout << endl << "Введите количество журналов в библиотеке ";
-		cin >> magazineCount;
+		std::cin >> magazineCount;
 	}
-	St::Book* bookArray = new St::Book[bookCount];
-	cin.ignore();
+	St::Book** bookArray;
+	int numberOfP;
+	bookArray = new St::Book * [bookCount];
 	for (int i = 0; i < bookCount; i++)
 	{
-		bookArray[i];
-		St::Book::Input(&(bookArray[i]));
+		cout << "\nСколько в сборнике произведений: ";
+		std::cin >> numberOfP;
+		std::cin.ignore();
+		for (int j = 0; j < numberOfP; j++)
+		{
+			bookArray[i] = new St::Book[numberOfP + 1];
+			if (j == 0)
+			{
+				cout << "\nВведите данные о сборнике\n";
+				St::Book::Input(&bookArray[i][0]);
+				continue;
+			}
+			St::Book::Input(&bookArray[i][j]);
+		}
 	}
+
+	/*else
+	{
+		St::Book* bookArray = new St::Book[bookCount];
+		for (int i = 0; i < bookCount; i++)
+		{
+			St::Book::Input(&(bookArray[i]));
+		}
+	}*/
+	std::cin.ignore();
+
 	St::Magazine* magazineArray = new St::Magazine[magazineCount];
 	St::Magazine::SetCreatedCount(magazineCount);
 	for (int i = 0; i < magazineCount; i++)
@@ -47,7 +71,16 @@ int main()
 	}
 	for (int i = 0; i < bookCount; i++)
 	{
-		St::Output(bookArray[i]);
+		for (int j = 0; j < numberOfP; j++)
+		{
+			if (j == 0)
+			{
+				cout << "\nИнформация о сборнике\n";
+				St::Output(bookArray[i][j]);
+				continue;
+			}
+			St::Output(bookArray[i][j]);
+		}
 	}
 	for (int i = 0; i < magazineCount; i++)
 	{
