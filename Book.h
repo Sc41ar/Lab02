@@ -7,20 +7,17 @@
 #include "Author.h"
 #include "Genre.h"
 #include "Publisher.h"
+#include "Litreture.h"
 
 using namespace std;
 
 namespace St
 {
-	class Book
+	class Book : private Literature
 	{
 		friend static void Output(Book& b);
 	private:
-		Genre genre;
 		Author author;
-		Publisher publisher;
-		int publishingYear;
-		std::string name;
 	public:
 		
 
@@ -52,7 +49,7 @@ namespace St
 
 		string GerPublisher();
 
-		static void Input(Book* b);
+		void Input() override;
 
 		/*static void Output(Book* b);*/
 	};

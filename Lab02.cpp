@@ -14,6 +14,7 @@ using namespace std;
 int main()
 {
 	setlocale(LC_ALL, "Rus");
+	system("chcp 1251");
 	int bookCount = 0, magazineCount = 0;
 	try
 	{
@@ -46,10 +47,10 @@ int main()
 			if (j == 0)
 			{
 				cout << "\nВведите данные о сборнике\n";
-				St::Book::Input(&bookArray[i][0]);
+				bookArray[i][0].St::Book::Input();
 				continue;
 			}
-			St::Book::Input(&bookArray[i][j]);
+			bookArray[i][j].St::Book::Input();
 		}
 	}
 
@@ -67,7 +68,7 @@ int main()
 	St::Magazine::SetCreatedCount(magazineCount);
 	for (int i = 0; i < magazineCount; i++)
 	{
-		St::Magazine::Input(&(magazineArray[i]));
+		magazineArray[i].St::Magazine::Input();
 	}
 	for (int i = 0; i < bookCount; i++)
 	{
@@ -84,7 +85,7 @@ int main()
 	}
 	for (int i = 0; i < magazineCount; i++)
 	{
-		St::Magazine::Output(magazineArray[i]);
+		St::Magazine::Output(&magazineArray[i]);
 	}
 
 	cout << "Количество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;

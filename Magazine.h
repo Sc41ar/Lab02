@@ -6,7 +6,7 @@
 #include "Publisher.h"
 #include <iostream>
 #include <Windows.h>
-
+#include "Litreture.h"
 #include <functional>
 #include <clocale>
 
@@ -14,14 +14,9 @@ using namespace std;
 
 namespace St
 {
-	class Magazine
+	class Magazine : private Literature
 	{
 	private:
-
-		std::string name;
-		Genre genre;
-		Publisher publisher;
-		int publishingYear;
 		int publishingMonth;
 		static int createdCount;
 	public:
@@ -32,9 +27,9 @@ namespace St
 
 		static string* GetOutputStr(Magazine* m, string* output);
 
-		static void Input(Magazine* m);
+		void Input();
 
-		static void Output(Magazine m);
+		static void Output(Magazine* m);
 
 		static void SetCreatedCount(string count);
 

@@ -9,9 +9,9 @@ St::Book::Book()
 	publishingYear = 1000;
 }
 
-St::Book::Book(string name)
+St::Book::Book(string name, )
 {
-	this->name = name;
+	Literature::Literature();
 }
 
 St::Book::Book(string authorName, string genreName, int year)
@@ -76,23 +76,23 @@ int St::Book::GetYear()
 	return publishingYear;
 }
 
-void St::Book::Input(Book* b)
+void St::Book::Input()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	string  year;
 	std::cout << "Введите данные книги в следующем порядке: название, жанр, автор, издатель, год издания:" << std::endl;
 	cout << "Название ";
-	getline(cin, b->name);
+	getline(cin, name);
 	cout << "Жанр ";
-	getline(cin, b->genre.genreName);
+	getline(cin, genre.genreName);
 	cout << "Автор ";
-	getline(cin, b->author.name);
+	getline(cin, author.name);
 	cout << "Издатель: ";
-	getline(cin, b->publisher.publisherName);
+	getline(cin, publisher.publisherName);
 	cout << "Год издания: ";
 	getline(cin, year);
-	function<bool(string)> is_number = [](string sy)														
+	function<bool(string)> is_number = [](string sy)
 	{
 		return !sy.empty() && find_if(sy.begin(), sy.end(), [](char c) {return !isdigit(c); }) == sy.end(); //Возвращает проверку на то, является ли строка числом и не пустая ли она.
 	};
@@ -101,7 +101,7 @@ void St::Book::Input(Book* b)
 		cout << "Введите год издания числом) ";
 		getline(cin, year);
 	}
-	b->publishingYear = stoi(year) % 2023;
+	publishingYear = stoi(year) % 2023;
 }
 
 //void St::Book::Output(Book* b)

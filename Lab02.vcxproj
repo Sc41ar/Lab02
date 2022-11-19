@@ -132,6 +132,7 @@
     <ClCompile Include="Book.cpp" />
     <ClCompile Include="Genre.cpp" />
     <ClCompile Include="Lab02.cpp" />
+    <ClCompile Include="Litreture.cpp" />
     <ClCompile Include="Magazine.cpp" />
     <ClCompile Include="Publisher.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="Book.h" />
     <ClInclude Include="Genre.h" />
     <ClInclude Include="Lab02.h" />
+    <ClInclude Include="Litreture.h" />
     <ClInclude Include="Magazine.h" />
     <ClInclude Include="Publisher.h" />
   </ItemGroup>

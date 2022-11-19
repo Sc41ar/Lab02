@@ -18,7 +18,7 @@ St::Magazine::Magazine(string name, string genre, string publisher, int year, in
 
 }
 
-void St::Magazine::Input(Magazine* m)
+void St::Magazine::Input()
 {
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
@@ -26,11 +26,11 @@ void St::Magazine::Input(Magazine* m)
 	string year, month;
 	std::cout << "Введите данные журнала в следующем порядке: " << endl;
 	cout << "Название: ";
-	getline(cin, m->name);
+	getline(cin, name);
 	cout << "Жанр: ";
-	getline(cin, m->genre.genreName);
+	getline(cin, genre.genreName);
 	cout << "Издатель: ";
-	getline(cin, m->publisher.publisherName);
+	getline(cin, publisher.publisherName);
 	cout << "Год издания: ";
 	getline(cin, year);
 	cout << "Месяц изания: ";
@@ -43,8 +43,8 @@ void St::Magazine::Input(Magazine* m)
 	};
 	try
 	{
-		m->publishingYear = stoi(year) % 2023;
-		m->publishingMonth = stoi(month) % 13;
+		publishingYear = stoi(year) % 2023;
+		publishingMonth = stoi(month) % 13;
 	}
 	catch (std::exception& e)
 	{
@@ -53,8 +53,8 @@ void St::Magazine::Input(Magazine* m)
 		getline(cin, year);
 		cout << "\nА теперь месяц тоже числом) ";
 		getline(cin, month);
-		m->publishingYear = stoi(year) % 2023;
-		m->publishingMonth = stoi(month) % 13;
+		publishingYear = stoi(year) % 2023;
+		publishingMonth = stoi(month) % 13;
 	}
 }
 
@@ -67,12 +67,12 @@ string* St::Magazine::GetOutputStr(Magazine* m, string* output)
 	return output;
 }
 
-void St::Magazine::Output(Magazine m)
+void St::Magazine::Output(Magazine *m)
 {
 	setlocale(LC_ALL, "Rus");
 	string out;
 
-	std::cout << *(Magazine::GetOutputStr(&m, &out)) << std::endl;
+	std::cout << *(Magazine::GetOutputStr(m, &out)) << std::endl;
 }
 
 void St::Magazine::SetName(string name)
