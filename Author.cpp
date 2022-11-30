@@ -2,12 +2,12 @@
 
 namespace St
 {
-	Author::Author()
+	Author<std::string>::Author()
 	{
 		Author::name = "Lenin";
 	}
 
-	Author::Author(std::string name)
+	Author<std::string>::Author(std::string name)
 	{
 		Author::name = name;
 	}

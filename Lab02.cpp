@@ -41,27 +41,17 @@ int main()
 		cout << "\nСколько в сборнике произведений: ";
 		std::cin >> numberOfP;
 		std::cin.ignore();
-		for (int j = 0; j < numberOfP; j++)
+		cout << "\nВведите данные о сборнике\n";
+		bookArray[i] = new St::Book[numberOfP + 1];
+		bookArray[i][0].St::Book::Input();
+		for (int j = 1; j < numberOfP + 1; j++)
 		{
-			bookArray[i] = new St::Book[numberOfP + 1];
-			if (j == 0)
-			{
-				cout << "\nВведите данные о сборнике\n";
-				bookArray[i][0].St::Book::Input();
-				continue;
-			}
+			cout << "\nДанные о книге номер" << j << "\t";
 			bookArray[i][j].St::Book::Input();
+			bookArray[i][j].SetYear(bookArray[i][0].GetYear());
+			bookArray[i][j].SetPublisher(bookArray[i][0].GetPublisher());
 		}
 	}
-
-	/*else
-	{
-		St::Book* bookArray = new St::Book[bookCount];
-		for (int i = 0; i < bookCount; i++)
-		{
-			St::Book::Input(&(bookArray[i]));
-		}
-	}*/
 	std::cin.ignore();
 
 	St::Magazine* magazineArray = new St::Magazine[magazineCount];
@@ -72,14 +62,12 @@ int main()
 	}
 	for (int i = 0; i < bookCount; i++)
 	{
-		for (int j = 0; j < numberOfP; j++)
+
+		cout << "\nИнформация о сборнике\n";
+		St::Output(bookArray[i][0]);
+		for (int j = 1; j < numberOfP+1; j++)
 		{
-			if (j == 0)
-			{
-				cout << "\nИнформация о сборнике\n";
-				St::Output(bookArray[i][j]);
-				continue;
-			}
+			cout << endl;
 			St::Output(bookArray[i][j]);
 		}
 	}
@@ -88,7 +76,7 @@ int main()
 		St::Magazine::Output(&magazineArray[i]);
 	}
 
-	cout << "Количество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;
+	cout << "\nКоличество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;
 
 
 	delete[] bookArray;

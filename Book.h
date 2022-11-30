@@ -13,19 +13,17 @@ using namespace std;
 
 namespace St
 {
-	class Book : private Literature
+	class Book : protected Literature
 	{
 		friend static void Output(Book& b);
-	private:
-		Author author;
+	protected:
+		Author<string> author;
 	public:
 		
 
 		Book();
 
-		Book(std::string name);
-
-		Book(std::string authorName, std::string genreName, int year);
+		Book(string name, std::string genreName, string publisher, string author, int year);
 
 		void SetName(string name);
 
@@ -47,7 +45,7 @@ namespace St
 
 		void SetPublisher(string publisher);
 
-		string GerPublisher();
+		string GetPublisher();
 
 		void Input() override;
 

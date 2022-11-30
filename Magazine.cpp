@@ -10,12 +10,10 @@ St::Magazine::Magazine()
 	publishingMonth = 12;
 }
 
-St::Magazine::Magazine(string name, string genre, string publisher, int year, int month)
+St::Magazine::Magazine(string name, string genre, string publisher, int year, int month) :Literature(name, genre, publisher, year)
 {
-	this->name = name;
-	this->genre.genreName = genre;
-	this->publisher.publisherName = publisher;
 
+	this->publishingMonth;
 }
 
 void St::Magazine::Input()
@@ -23,16 +21,9 @@ void St::Magazine::Input()
 	setlocale(LC_ALL, "Rus");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	string year, month;
+	string  month;
 	std::cout << "Введите данные журнала в следующем порядке: " << endl;
-	cout << "Название: ";
-	getline(cin, name);
-	cout << "Жанр: ";
-	getline(cin, genre.genreName);
-	cout << "Издатель: ";
-	getline(cin, publisher.publisherName);
-	cout << "Год издания: ";
-	getline(cin, year);
+	Literature::Input();
 	cout << "Месяц изания: ";
 	getline(cin, month);
 	function<bool(string)> is_number = [](string sy)
@@ -43,17 +34,13 @@ void St::Magazine::Input()
 	};
 	try
 	{
-		publishingYear = stoi(year) % 2023;
 		publishingMonth = stoi(month) % 13;
 	}
 	catch (std::exception& e)
 	{
 		cout << e.what();
-		cout << "\nВведите год издания числом) ";
-		getline(cin, year);
 		cout << "\nА теперь месяц тоже числом) ";
 		getline(cin, month);
-		publishingYear = stoi(year) % 2023;
 		publishingMonth = stoi(month) % 13;
 	}
 }
@@ -62,12 +49,12 @@ string* St::Magazine::GetOutputStr(Magazine* m, string* output)
 {
 	string year = to_string(m->publishingYear);
 	string month = to_string(m->publishingMonth);
-	*output = "Информация о журнале \"" + m->name + "\" \nжанр: " + m->genre.genreName + "\nиздатель: " + m->publisher.publisherName
+	*output = "\nИнформация о журнале \"" + m->name + "\" \nжанр: " + m->genre.genreName + "\nиздатель: " + m->publisher.publisherName
 		+ "\nгод издания: " + year + "\nмесяц издания: " + month;
 	return output;
 }
 
-void St::Magazine::Output(Magazine *m)
+void St::Magazine::Output(Magazine* m)
 {
 	setlocale(LC_ALL, "Rus");
 	string out;
@@ -170,6 +157,20 @@ St::Magazine operator + (St::Magazine m1, St::Magazine m2)
 	curYear = determinant(m1.GetYear(), m2.GetYear());
 	curMonth = determinant(m1.GetMonth(), m2.GetMonth());
 	St::Magazine value(name, "Сборник", m2.GetPublisher(), curYear, curMonth);
+	return value;
+}
+
+St::Magazine operator + (St::Magazine m1, Literature l2)
+{
+	int curYear, curMonth;
+	string name;
+	auto determinant = [](int i1, int i2) {
+		return i1 > i2 ? i1 : i2;
+	};
+	name = m1.GetName() + "и" + l2.GetName();
+	curYear = determinant(m1.GetYear(), l2.GetYear());
+	curMonth = m1.GetMonth();
+	St::Magazine value(name, "Сборник", l2.GetPublisher(), curYear, curMonth);
 	return value;
 }
 

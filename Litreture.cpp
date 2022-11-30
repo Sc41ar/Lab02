@@ -17,22 +17,3 @@ Literature::Literature(string name, string genre, string publisher, int publishi
 	this->publisher.publisherName = publisher;
 	this->publishingYear = publishingYear;
 }
-
-Literature::~Literature()
-{
-}
-
-void Literature::Input()
-{
-	string year;
-	cout << "Введите название произведения: ";
-	getline(cin, name);
-	cout << "\nЖанр произведения: ";
-	getline(cin, genre.genreName);
-	cout << "\nИздатель: ";
-	getline(cin, publisher.publisherName);
-	cout << "\nГод публикации: ";
-	getline(cin, year);
-	publishingYear = stoi(year);
-
-}

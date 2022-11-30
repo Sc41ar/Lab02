@@ -9,16 +9,9 @@ St::Book::Book()
 	publishingYear = 1000;
 }
 
-St::Book::Book(string name, )
+St::Book::Book(string name, string genreName, string publisher, string author, int year) : Literature(name, genreName, publisher, year)
 {
-	Literature::Literature();
-}
-
-St::Book::Book(string authorName, string genreName, int year)
-{
-	author.name = authorName;
-	genre.genreName = genreName;
-	publishingYear = year;
+	this->author.name = author;
 }
 
 void St::Book::SetName(string name)
@@ -56,7 +49,7 @@ void St::Book::SetPublisher(string publisher)
 	this->publisher.publisherName = publisher;
 }
 
-string St::Book::GerPublisher()
+string St::Book::GetPublisher()
 {
 	return publisher.publisherName;
 }
@@ -104,10 +97,9 @@ void St::Book::Input()
 	publishingYear = stoi(year) % 2023;
 }
 
-//void St::Book::Output(Book* b)
-//{
-//	setlocale(LC_ALL, "Rus");
-//	std::cout << "Информация о книге \"" << b->name << "\" жанр: " << b->genre.genreName << " автор: "
-//		<< b->author.name << " издатель: " << b->publisher.publisherName << " год издания: " << b->publishingYear << std::endl;
-//}
+ostream& operator<<(ostream& out, Book& b)
+{
+	out << "Информация о книге: \"" << b.GetName() << "\" Жанр: " << b.GetGenre() << " Автор: " << b.GetAuthor() << " Издатель: " << b.GetPublisher() << " Год издания: " << b.GetYear();
+	return out;
+}
 

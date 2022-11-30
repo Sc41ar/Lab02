@@ -17,7 +17,35 @@ protected:
 public:
 	Literature();
 	Literature(string name, string genre, string publisher, int publishingYear);
-	~Literature();
-	virtual void Input();
+	virtual string GetName()
+	{
+		return name;
+	}
+	virtual string GetPublisher()
+	{
+		return publisher.publisherName;
+	}
+	virtual int GetYear()
+	{
+		return publishingYear;
+	}
+	virtual string GetGenre()
+	{
+		return genre.genreName;
+	}
+	virtual void Input()
+	{
+
+		string year;
+		cout << "Введите название: ";
+		getline(cin, name);
+		cout << "\nЖанр : ";
+		getline(cin, genre.genreName);
+		cout << "\nИздатель: ";
+		getline(cin, publisher.publisherName);
+		cout << "\nГод публикации: ";
+		getline(cin, year);
+		publishingYear = stoi(year);
+	};
 };
 

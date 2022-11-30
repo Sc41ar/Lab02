@@ -4,13 +4,14 @@
 
 namespace St
 {
+	template<typename T>
 	class Author
 	{
 	public:
 
-		std::string name;
+		T name;
 
 		Author();
-		Author(std::string inputName);
+		Author(T inputName);
 	};
 }
