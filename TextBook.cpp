@@ -46,3 +46,9 @@ TextBook TextBook::operator= (Book b)
 	theme = "неопределена";
 	return *this;
 }
+
+ostream& operator<<(ostream& out, TextBook& b)
+{
+	out << "Информация о книге: \"" << b.GetName() << "\" Жанр: " << b.GetGenre() << " Автор: " << b.GetAuthor() << " Издатель: " << b.GetPublisher() << " Год издания: " << b.GetYear();
+	return out;
+}

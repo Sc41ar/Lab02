@@ -38,12 +38,12 @@ int main()
 		cout << endl << "Введите количество журналов в библиотеке ";
 		std::cin >> magazineCount;
 	}
-	cin.ignore();
 	for (int i = 0; i < bookCount; i++)
 	{
 		cout << "Книга (1) или Учебник (2)";
 		int check;
 		cin >> check;
+		cin.ignore();
 		if (check == 2)
 			books.push_back(new TextBook());
 		else
@@ -58,8 +58,10 @@ int main()
 	{
 		magazineArray[i].St::Magazine::Input();
 	}
-
-	sort(books.begin(), books.end(), );
+	sort(books.begin(), books.end(), [](Book* b1, Book* b2)
+		{
+			return b1->GetName().compare(b2->GetName()) >= 0;
+		});
 	for (int i = 0; i < bookCount; i++)
 	{
 		St::Output(*(books[i]));
@@ -67,6 +69,20 @@ int main()
 	for (int i = 0; i < magazineCount; i++)
 	{
 		St::Magazine::Output(&magazineArray[i]);
+	}
+
+	cout << "\nВведите название и автора искомой книги";
+	string name, author;
+	getline(cin, name);
+	getline(cin, author);
+	for (auto e : books)
+	{
+		if (e->GetName().compare(name) == 0 && e->GetAuthor().compare(author) == 0)
+		{
+			cout << "\nИскомая книга: ";
+			St::Output(*e);
+		}
+		delete e;
 	}
 
 	cout << "\nКоличество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;
