@@ -1,5 +1,6 @@
 ﻿
 #include <stdio.h>
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <clocale>
@@ -8,6 +9,8 @@
 #include "Book.h"
 #include "Magazine.h"
 #include "Lab02.h"
+#include <vector>
+#include "TextBook.h"
 
 using namespace std;
 
@@ -16,6 +19,8 @@ int main()
 	setlocale(LC_ALL, "Rus");
 	system("chcp 1251");
 	int bookCount = 0, magazineCount = 0;
+	vector<Book*> books;
+
 	try
 	{
 		cout << "\nВведите количество сборников в библиотеке ";
@@ -33,24 +38,17 @@ int main()
 		cout << endl << "Введите количество журналов в библиотеке ";
 		std::cin >> magazineCount;
 	}
-	St::Book** bookArray;
-	int numberOfP;
-	bookArray = new St::Book * [bookCount];
+	cin.ignore();
 	for (int i = 0; i < bookCount; i++)
 	{
-		cout << "\nСколько в сборнике произведений: ";
-		std::cin >> numberOfP;
-		std::cin.ignore();
-		cout << "\nВведите данные о сборнике\n";
-		bookArray[i] = new St::Book[numberOfP + 1];
-		bookArray[i][0].St::Book::Input();
-		for (int j = 1; j < numberOfP + 1; j++)
-		{
-			cout << "\nДанные о книге номер" << j << "\t";
-			bookArray[i][j].St::Book::Input();
-			bookArray[i][j].SetYear(bookArray[i][0].GetYear());
-			bookArray[i][j].SetPublisher(bookArray[i][0].GetPublisher());
-		}
+		cout << "Книга (1) или Учебник (2)";
+		int check;
+		cin >> check;
+		if (check == 2)
+			books.push_back(new TextBook());
+		else
+			books.push_back(new Book());
+		(*books[i]).Input();
 	}
 	std::cin.ignore();
 
@@ -60,16 +58,11 @@ int main()
 	{
 		magazineArray[i].St::Magazine::Input();
 	}
+
+	sort(books.begin(), books.end(), );
 	for (int i = 0; i < bookCount; i++)
 	{
-
-		cout << "\nИнформация о сборнике\n";
-		St::Output(bookArray[i][0]);
-		for (int j = 1; j < numberOfP+1; j++)
-		{
-			cout << endl;
-			St::Output(bookArray[i][j]);
-		}
+		St::Output(*(books[i]));
 	}
 	for (int i = 0; i < magazineCount; i++)
 	{
@@ -78,8 +71,6 @@ int main()
 
 	cout << "\nКоличество записанных в библиотеку журналов " << St::Magazine::GetCreatedCount() << endl;
 
-
-	delete[] bookArray;
 	delete[] magazineArray;
 	return 0;
 }
